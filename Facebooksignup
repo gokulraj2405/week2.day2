@@ -1,0 +1,66 @@
+package week2.day2;
+
+import java.time.Duration;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.Select;
+
+public class FaceBook {
+
+	public static void main(String[] args) {
+		ChromeDriver driver = new ChromeDriver();
+		driver.manage().window().maximize();
+		
+		driver.get("https://en-gb.facebook.com/");
+		
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
+		
+		WebElement createaccount = 	driver.findElement(By.xpath("//div[@class=\"_6ltg\"]/a"));
+		createaccount.click();
+		
+		WebElement firstname = driver.findElement(By.name("firstname"));
+		firstname.sendKeys("gokul");
+		
+		WebElement lastname = driver.findElement(By.name("lastname"));
+		lastname.sendKeys("raj");
+		
+		WebElement mobilenumber = driver.findElement(By.name("reg_email__"));
+		mobilenumber.sendKeys("7010070030");
+		
+		WebElement password = driver.findElement(By.name("reg_passwd__"));
+		password.sendKeys("gokul@2407");
+		
+		WebElement birthday = driver.findElement(By.name("birthday_day"));
+		Select select = new Select(birthday);
+		select.selectByValue("24");
+		
+		WebElement birthmonth = driver.findElement(By.name("birthday_month"));
+		Select selectmonth = new Select(birthmonth);
+		selectmonth.selectByValue("7");
+		
+		WebElement birthyear = driver.findElement(By.name("birthday_year"));
+		Select selectyear = new Select(birthyear);
+		selectyear.selectByValue("1998");
+		
+		WebElement gender = driver.findElement(By.xpath("(//input[@name='sex'])[2]"));
+		gender.click();
+		
+		WebElement signup = driver.findElement(By.name("websubmit"));
+		signup.click();
+		
+		
+		
+		
+		
+		
+		
+		
+	
+		
+
+	}
+
+}
+//(xpath of parent)/child-tagName
