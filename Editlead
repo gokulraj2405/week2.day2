@@ -1,0 +1,59 @@
+package week2.day2;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class EditLead {
+
+	public static void main(String[] args) {
+		ChromeDriver driver = new ChromeDriver();
+		driver.get("http://leaftaps.com/opentaps/control/login");
+		driver.manage().window().maximize();
+
+		WebElement username = driver.findElement(By.id("username"));
+		username.sendKeys("demosalesManager");
+
+		WebElement password = driver.findElement(By.id("password"));
+		password.sendKeys("crmsfa");
+
+		WebElement login = driver.findElement(By.className("decorativeSubmit"));
+		login.click();
+
+		WebElement clickcrm = driver.findElement(By.partialLinkText("CRM"));
+		clickcrm.click();
+
+		WebElement leads = driver.findElement(By.xpath("//a[@href='/crmsfa/control/leadsMain']"));
+		leads.click();
+
+		WebElement findleads = driver.findElement(By.xpath("//a[@href='/crmsfa/control/findLeads']"));
+		findleads.click();
+
+		WebElement firstname = driver.findElement(By.xpath("(//input[@name='firstName'])[3]"));
+		firstname.sendKeys("gokul raj");
+
+		WebElement findleadsbutton = driver.findElement(By.xpath("//button[text()='Find Leads']"));
+		findleadsbutton.click();
+
+		WebElement firstresultinglead = driver.findElement(By.xpath("//a[@href='/crmsfa/control/viewLead?partyId=12530']"));
+		firstresultinglead.click();
+
+		System.out.println(driver.getTitle());
+
+		WebElement editlead = driver.findElement(By.xpath("(//a[@class='subMenuButton'])[3]"));
+		editlead.click();
+
+		WebElement companyname = driver.findElement(By.xpath("(//input[@name='companyName'])[2]"));
+		companyname.sendKeys("Gokul cycle world");
+
+		WebElement update = driver.findElement(By.xpath("//input[@name='submitButton']"));
+		update.click();
+
+		String changedcompanyname = driver.findElement(By.id("viewLead_companyName_sp")).getText();
+		System.out.println(changedcompanyname);
+
+		driver.close();
+
+	}
+
+}
